@@ -34,6 +34,8 @@ import java.util.List;
  *
  */
 public class TwoWheelTrackingLocalizer extends TwoTrackingWheelLocalizer {
+    double xMulti = 1.0027216791;
+    double yMulti = 0.99366538318;
     public static double TICKS_PER_REV = 8192;
     public static double WHEEL_RADIUS = 1.37795/2; // in
 
@@ -85,8 +87,8 @@ public class TwoWheelTrackingLocalizer extends TwoTrackingWheelLocalizer {
     @Override
     public List<Double> getWheelPositions() {
         return Arrays.asList(
-                encoderTicksToInches(parallelEncoder.getCurrentPosition()),
-                encoderTicksToInches(perpendicularEncoder.getCurrentPosition())
+                encoderTicksToInches(parallelEncoder.getCurrentPosition())*xMulti,
+                encoderTicksToInches(perpendicularEncoder.getCurrentPosition())*yMulti
         );
     }
 
